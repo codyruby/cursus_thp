@@ -20,7 +20,12 @@ class Gossip
         return all_gossips
       end
 
-      def find
-      end
+    #   def find(id)
+    #     gossips_choices = []
+    #     CSV.read("./lib/db/gossip.csv").each do |csv|
+    #         all_gossips << Gossip.new(csv[id])
+    #     end
+    #         return gossips_choices
+    #   end
 
 end

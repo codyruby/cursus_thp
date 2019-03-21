@@ -22,12 +22,13 @@ class ApplicationController < Sinatra::Base
   post '/gossips/new/' do
     puts "Ce programme ne fait rien pour le moment, on va donc afficher un message en console"
     Gossip.new("#{params["gossip_author"]}", "#{params["gossip_content"]}").save
-    redirect '/gossips/:id'
+    redirect '/'
   end 
 
   get '/gossips/:id' do
-    puts "Tu est sur la page #{params[:id]}"
-    
+    puts "Tu est sur la page #{params[:id]}" 
+    id = :id
+    # Gossip.find(id)
   end
   
 end
