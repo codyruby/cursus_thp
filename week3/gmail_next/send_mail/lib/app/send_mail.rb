@@ -7,6 +7,8 @@ require 'mail'
 
 Dotenv.load('.env')
 
+# Authentification et autorisation au service Gmail
+
 OOB_URI = 'urn:ietf:wg:oauth:2.0:oob'.freeze
 APPLICATION_NAME = 'Gmail API Ruby Quickstart'.freeze
 CREDENTIALS_PATH = ENV['CREDENTIALS'].freeze
@@ -45,24 +47,27 @@ service = Google::Apis::GmailV1::GmailService.new
 service.client_options.application_name = APPLICATION_NAME
 service.authorization = authorize
 
-# Parse the csv file for extract email
-
+# Parcour du fichier csv pour extraire les adresses mail
+@mail = []
 CSV.foreach('db/emails.csv') do |name, email| 
-@email = email
+@mail << email
 end
-p @email
 
-# Send email
+# Envoie des emails à toutes les adresses du tableau @mail
+@mail.each do |adress_mail|
+        mail = Mail.new do
+            from    'mikel@test.lindsaar.net'
+            to      "#{adress_mail}"
+            subject 'Lumière sur les Restos du coeur'
+            body    File.read('body.txt')
+        end
+          
+        mail.to_s
 
-mail = Mail.new do
-    from    'mikel@test.lindsaar.net'
-    to      "vittelform91@gmail.com"
-    subject 'Lumière sur les Restos du coeur'
-    body    File.read('body.txt')
-  end
-  
-mail.to_s
+        message = Google::Apis::GmailV1::Message.new(raw: mail.to_s)
 
-message = Google::Apis::GmailV1::Message.new(raw: mail.to_s)
+        service.send_user_message(ENV['MAIL'], message)
+end
+    
 
-service.send_user_message(ENV['MAIL'], message)
+

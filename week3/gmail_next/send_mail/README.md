@@ -1,1 +1,1 @@
-Vous êtes dans une dossier Setup Ruby
+Application qui permet de récupérer des adresses mail et d'envoyer des emails masse.
