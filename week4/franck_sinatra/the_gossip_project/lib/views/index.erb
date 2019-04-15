@@ -7,5 +7,13 @@
 
     <p>Bienvenue à toi, de nouveaus Gossips arrivent bientôt, en attendant tu peux créer un nouveau Gossip en cliquant sur le lien ci-dessous:</p>
     <a href="/gossips/new/">Nouveau Gossip</a>
+
+    <% gossips.each do |gossip| %>
+        <p>
+          <%= gossip.author %><br/>
+          <%= gossip.content %>
+        </p>
+      <% end %>
+
   </body>
 </html>
