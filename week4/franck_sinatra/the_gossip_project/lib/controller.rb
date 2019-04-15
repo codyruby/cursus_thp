@@ -2,9 +2,9 @@ require 'gossip'
 
 class ApplicationController < Sinatra::Base
   
-  # Méthode get pour afficher la page index de notre application
+  # Méthode get pour afficher la page index de notre application avec tous les gossips enregiter dans le fichier csv
   get '/' do
-    erb :index
+    erb :index, locals: {gossips: Gossip.all}
   end
 
   # Méthode get pour afficher la page /gossips/new
@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
     # puts "Ça déchire sa mémé, bon allez je m'en vais du serveur, ciao les BGs !"
     # puts "Ce programme ne fait rien pour le moment, on va donc afficher un message en console"
 
-    # Redirection à la page d'accueil
+    # Redirection vers la page d'accueil
     redirect '/'
   end
 
