@@ -14,8 +14,18 @@ class ApplicationController < Sinatra::Base
 
   # Méthode post pour l'envoi d'un formulaire"
   post '/gossips/new/' do
-    Gossip.new("super_auteur", "super_gossip").save
-    puts "Ce programme ne fait rien pour le moment, on va donc afficher un message en console"
+    # Création d'une nouvelle instance Gossip
+    Gossip.new("#{params["author"]}", "#{params["content"]}").save
+    
+    # puts "Salut, je suis dans le serveur"
+    # puts "Ceci est mon super params : #{params}"
+    # puts "Trop bien ! Et ceci est ce que l'utilisateur a passé dans le champ gossip_author : #{params["author"]}"
+    # puts "De la bombe, et du coup ça ça doit être ce que l'utilisateur a passé dans le champ gossip_content : #{params["content"]}"
+    # puts "Ça déchire sa mémé, bon allez je m'en vais du serveur, ciao les BGs !"
+    # puts "Ce programme ne fait rien pour le moment, on va donc afficher un message en console"
+
+    # Redirection à la page d'accueil
+    redirect '/'
   end
 
   
