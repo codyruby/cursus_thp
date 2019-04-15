@@ -1,5 +1,7 @@
 class Gossip
 
+    attr_accessor :author, :content
+    
     # Méthode d'initialisation d'un instance Gossip
     def initialize(author, content)
         @author = author
