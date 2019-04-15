@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
   end
   # Méthode get qui affiche la page en fonction de l'id
   get '/gossips/:id' do
+    @id = params[:id]
     erb :gossip
   end
 
