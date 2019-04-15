@@ -1,7 +1,7 @@
 class Gossip
 
     attr_accessor :author, :content
-    
+
     # Méthode d'initialisation d'un instance Gossip
     def initialize(author, content)
         @author = author
@@ -17,12 +17,17 @@ class Gossip
 
     # Méthode de permet de ressortir tous les gossips du fichier csv
     def self.all
-        all_gossips = []
+        @all_gossips = []
         CSV.read("./db/gossip.csv").each do |csv_line|
-          all_gossips << Gossip.new(csv_line[0], csv_line[1])
+          @all_gossips << Gossip.new(csv_line[0], csv_line[1])
         end
-        return all_gossips
-      end
+        return @all_gossips
+    end
+
+    # Méthode qui permet de trouver un gossip
+    def find
+  
+    end
 
 end
 
