@@ -6,6 +6,10 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index, locals: {gossips: Gossip.all}
   end
+  # Méthode get qui affiche la page en fonction de l'id
+  get '/gossips/:id' do
+    erb :gossip
+  end
 
   # Méthode get pour afficher la page /gossips/new
   get '/gossips/new/' do
