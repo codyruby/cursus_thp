@@ -8,5 +8,9 @@ class ApplicationController < Sinatra::Base
     erb :new_gossip
   end
 
+  post '/gossips/new/' do
+    puts "Ce programme ne fait rien pour le moment, on va donc afficher un message en console"
+  end
+
   
 end
